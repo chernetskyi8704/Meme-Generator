@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  align-items: center;
+  flex-wrap:wrap;
+  height: auto;
+  padding: 20px;
+  background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
+  color: #ffffff;
+}
+
+.header__logo {
+  margin-right: 20px;
+}
+
+.header__title {
+  margin-right: auto;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.header__subtitle {
+  font-size: 18px;
+  font-weight: 500;
+}
