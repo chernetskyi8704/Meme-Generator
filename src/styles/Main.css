@@ -18,7 +18,7 @@
   justify-content: center;
   flex-wrap: wrap;
   flex-basis: 580px;
-  flex-shrink:1;
+  flex-shrink: 1;
   gap: 20px;
 }
 
@@ -42,7 +42,6 @@
 }
 
 .form__button:active {
-    transform: translateY(4px);
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  }
-  
+  transform: translateY(4px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
