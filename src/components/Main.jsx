@@ -15,7 +15,7 @@ export function Main() {
             className="form__input"
             placeholder="Enter a bottom text"
           />
-          <button type="submit" className="form__button">
+          <button type="button" className="form__button">
             Get a new meme image
           </button>
         </form>

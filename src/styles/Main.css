@@ -38,4 +38,11 @@
   font-size: 18px;
   border-radius: 15px;
   background: linear-gradient(90deg, #672280 1.18%, #a626d3 100%);
+  transition: all 0.2s ease-in-out;
 }
+
+.form__button:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+  
