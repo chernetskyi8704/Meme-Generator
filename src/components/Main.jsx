@@ -11,7 +11,10 @@ export function Main() {
     } catch (error) {
       alert("Something went wrong, please refresh the page");
     }
-  })();
+
+  function getRandomMemeData() {
+    const randomMemeData = memes[Math.floor(Math.random() * memes.length)];
+  }
 
   return (
     <main className="main">
