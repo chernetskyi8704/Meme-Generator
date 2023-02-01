@@ -1,3 +1,4 @@
+import React from "react";
 import "../styles/Main.css";
 
 export function Main() {
@@ -11,9 +12,14 @@ export function Main() {
     } catch (error) {
       alert("Something went wrong, please refresh the page");
     }
+  })();
+
+  let randomMemeImage = "";
+  const [memeImage, setMemeImage] = React.useState(randomMemeImage);
 
   function getRandomMemeData() {
     const randomMemeData = memes[Math.floor(Math.random() * memes.length)];
+    setMemeImage((randomMemeImage = randomMemeData.url));
   }
 
   return (
@@ -30,10 +36,23 @@ export function Main() {
             className="form__input"
             placeholder="Enter a bottom text"
           />
-          <button type="button" className="form__button">
+          <button
+            type="button"
+            className="form__button"
+            onClick={getRandomMemeData}
+          >
             Get a new meme image
           </button>
         </form>
+      </section>
+      <section className="section__meme">
+        <img
+          src={memeImage}
+          alt=""
+          className="meme__image"
+          width="100%"
+          height="auto"
+        />
       </section>
     </main>
   );
