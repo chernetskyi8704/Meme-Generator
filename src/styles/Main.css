@@ -40,6 +40,33 @@
 }
 
 .section__meme {
+  position: relative;
+  margin: 20px 0px;
   width: 50%;
-  margin-top: 20px;
+}
+
+.meme__image {
+  object-fit: contain;
+}
+
+.meme__text {
+  position: absolute;
+  color: white;
+  word-wrap: break-word;
+  text-shadow: 1px 1px 0 #000,
+  1px -1px 0 #000,
+  -1px 1px 0 #000,
+  -1px -1px 0 #000;
+  font-weight: bold;
+  font-size: 30px;
+  width: 100%;
+  text-align: center;
+}
+
+.top {
+  top: 10px;
+}
+
+.bottom {
+  bottom: 10px;
 }

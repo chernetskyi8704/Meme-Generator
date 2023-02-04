@@ -2,24 +2,44 @@ import React from "react";
 import "../styles/Main.css";
 
 export function Main() {
-  let memes = [];
+  let memesData = [];
 
   (async () => {
     try {
       const response = await fetch("https://api.imgflip.com/get_memes");
       const data = await response.json();
-      memes = data.data.memes;
+      memesData = data.data.memes;
     } catch (error) {
       alert("Something went wrong, please refresh the page");
     }
   })();
 
-  let randomMemeImage = "";
-  const [memeImage, setMemeImage] = React.useState(randomMemeImage);
+  const [meme, setMeme] = React.useState({
+    topText: "",
+    bottomText: "",
+    randomImage: "https://i.imgflip.com/1bij.jpg",
+  });
 
   function getRandomMemeData() {
-    const randomMemeData = memes[Math.floor(Math.random() * memes.length)];
-    setMemeImage((randomMemeImage = randomMemeData.url));
+    const randomMemeData =
+      memesData[Math.floor(Math.random() * memesData.length)];
+    const randomMemeUrl = randomMemeData.url;
+    setMeme(prevMeme => ({
+      ...prevMeme,
+      topText: "",
+      bottomText: "",
+      randomImage: randomMemeUrl
+    }));
+  }
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setMeme(prevMeme => {
+      return {
+        ...prevMeme,
+        [name]: value,
+      };
+    });
   }
 
   return (
@@ -28,13 +48,19 @@ export function Main() {
         <form className="form">
           <input
             type="text"
+            name="topText"
+            value = {meme.topText}
             className="form__input"
             placeholder="Enter a top text"
+            onChange={handleChange}
           />
           <input
             type="text"
+            name="bottomText"
+            value = {meme.bottomText}
             className="form__input"
             placeholder="Enter a bottom text"
+            onChange={handleChange}
           />
           <button
             type="button"
@@ -47,12 +73,14 @@ export function Main() {
       </section>
       <section className="section__meme">
         <img
-          src={memeImage}
+          src={meme.randomImage}
           alt=""
           className="meme__image"
           width="100%"
-          height="auto"
+          max-height="440px"
         />
+        <h2 className="meme__text top">{meme.topText}</h2>
+        <h2 className="meme__text bottom">{meme.bottomText}</h2>
       </section>
     </main>
   );
