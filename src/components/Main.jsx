@@ -2,17 +2,16 @@ import React from "react";
 import "../styles/Main.css";
 
 export function Main() {
-  let memesData = [];
+  const [memesData, setMemesData] = React.useState([]);
 
-  (async () => {
-    try {
-      const response = await fetch("https://api.imgflip.com/get_memes");
-      const data = await response.json();
-      memesData = data.data.memes;
-    } catch (error) {
-      alert("Something went wrong, please refresh the page");
+  React.useEffect(() => {
+    function fetchData() {
+      fetch("https://api.imgflip.com/get_memes")
+        .then(response => response.json())
+        .then(data => setMemesData(data.data.memes));
     }
-  })();
+    fetchData();
+  }, []);
 
   const [meme, setMeme] = React.useState({
     topText: "",
@@ -21,14 +20,13 @@ export function Main() {
   });
 
   function getRandomMemeData() {
-    const randomMemeData =
-      memesData[Math.floor(Math.random() * memesData.length)];
+    const randomMemeData = memesData[Math.floor(Math.random() * memesData.length)];
     const randomMemeUrl = randomMemeData.url;
     setMeme(prevMeme => ({
       ...prevMeme,
       topText: "",
       bottomText: "",
-      randomImage: randomMemeUrl
+      randomImage: randomMemeUrl,
     }));
   }
 
@@ -49,7 +47,7 @@ export function Main() {
           <input
             type="text"
             name="topText"
-            value = {meme.topText}
+            value={meme.topText}
             className="form__input"
             placeholder="Enter a top text"
             onChange={handleChange}
@@ -57,7 +55,7 @@ export function Main() {
           <input
             type="text"
             name="bottomText"
-            value = {meme.bottomText}
+            value={meme.bottomText}
             className="form__input"
             placeholder="Enter a bottom text"
             onChange={handleChange}
