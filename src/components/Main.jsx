@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/Main.css";
 
 export function Main() {
-  const [memesData, setMemesData] = React.useState([]);
+  const [memesData, setMemesData] = React.useState(() => []);
 
   React.useEffect(() => {
     function fetchData() {
@@ -13,11 +13,11 @@ export function Main() {
     fetchData();
   }, []);
 
-  const [meme, setMeme] = React.useState({
+  const [meme, setMeme] = React.useState(() => ({
     topText: "",
     bottomText: "",
     randomImage: "https://i.imgflip.com/1bij.jpg",
-  });
+  }));
 
   function getRandomMemeData() {
     const randomMemeData = memesData[Math.floor(Math.random() * memesData.length)];
