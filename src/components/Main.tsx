@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import "../styles/Main.css";
 
 export function Main() {
@@ -20,7 +20,12 @@ export function Main() {
   }));
 
   function getRandomMemeData() {
-    const randomMemeData = memesData[Math.floor(Math.random() * memesData.length)];
+    interface MemeData {
+      url: string;
+    }
+    const randomMemeData: MemeData = {
+      url: memesData[Math.floor(Math.random() * memesData.length)],
+    };
     const randomMemeUrl = randomMemeData.url;
     setMeme(prevMeme => ({
       ...prevMeme,
@@ -30,7 +35,7 @@ export function Main() {
     }));
   }
 
-  function handleChange(event) {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     setMeme(prevMeme => {
       return {
